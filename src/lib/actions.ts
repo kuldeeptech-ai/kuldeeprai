@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio';
 import type { Movie, MovieDetails, DownloadLink, Category, Episode } from './types';
 
 let baseUrl: string | null = null;
-const REDIRECT_URL = "https://hdhub4u.gd/?re=hdhub&t=1";
+const REDIRECT_URL = "https://hdhub4u.bi/";
 
 async function getBaseUrl(): Promise<string> {
     if (baseUrl) {
@@ -20,7 +20,7 @@ async function getBaseUrl(): Promise<string> {
         // The 'response.url' will be the final URL after all redirects
         const finalUrl = new URL(response.url);
         
-        // We only want the protocol and hostname, e.g., "https://hdhub4u.pictures"
+        // We only want the protocol and hostname, e.g., "https://new6.hdhub4u.cl/?utm=mn1"
         const cleanBaseUrl = `${finalUrl.protocol}//${finalUrl.hostname}`;
         
         baseUrl = cleanBaseUrl;
@@ -28,7 +28,7 @@ async function getBaseUrl(): Promise<string> {
     } catch (error) {
         console.error("Failed to discover base URL, falling back to a default. Error:", error);
         // Fallback in case the redirector is down
-        return "https://hdhub4u.pictures"; 
+        return "https://new6.hdhub4u.cl/?utm=mn1"; 
     }
 }
 
